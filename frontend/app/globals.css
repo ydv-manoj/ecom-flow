@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* ===== Design Tokens ===== */
+:root {
+  /* Light theme colors */
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans, system-ui, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
+
+  /* Derived tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ===== Base Styles ===== */
+body {
+  background-color: var(--color-background);
+  color:            var(--color-foreground);
+  font-family:      var(--font-sans);
+}
+
+/* ===== Custom Components ===== */
+/* Primary button */
+.btn-primary {
+  background-color: theme('colors.blue.500');
+  color:            theme('colors.white');
+  font-weight:      theme('fontWeight.semibold');
+  padding:          theme('spacing.3') theme('spacing.6');
+  border-radius:    theme('borderRadius.lg');
+  transition-property: background-color;
+  transition-duration: theme('transitionDuration.200');
+}
+.btn-primary:hover {
+  background-color: theme('colors.white');
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor:  not-allowed;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: theme('colors.white');
+  color:            theme('colors.gray.700');
+  font-weight:      theme('fontWeight.semibold');
+  padding:          theme('spacing.3') theme('spacing.6');
+  border-radius:    theme('borderRadius.lg');
+  border:           theme('borderWidth.DEFAULT') solid theme('colors.gray.300');
+  transition-property: background-color;
+  transition-duration: theme('transitionDuration.200');
+}
+.btn-secondary:hover {
+  background-color: theme('colors.gray.50');
+}
+
+/* Input field */
+.input-field {
+  width:            100%;
+  padding:          theme('spacing.3') theme('spacing.4');
+  border-width:     theme('borderWidth.DEFAULT');
+  border-color:     theme('colors.gray.300');
+  border-radius:    theme('borderRadius.lg');
+  transition-property: border-color, box-shadow;
+  transition-duration: theme('transitionDuration.200');
+}
+.input-field:focus {
+  outline:          none;
+  box-shadow:       0 0 0 theme('ringWidth.2') theme('colors.white');
+  border-color:     transparent;
+}
+
+/* Card */
+.card {
+  background-color: theme('colors.white');
+  border-radius:    theme('borderRadius.xl');
+  box-shadow:       theme('boxShadow.sm');
+  border:           theme('borderWidth.DEFAULT') solid theme('colors.gray.200');
+  padding:          theme('spacing.6');
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display:          inline-block;
+  width:            theme('spacing.8');
+  height:           theme('spacing.8');
+  border-bottom-width: theme('borderWidth.2');
+  border-radius:    9999px;
+  border-style:     solid;
+  border-color:     transparent;
+  border-bottom-color: theme('colors.white');
+  animation:        spin 1s linear infinite;
+}
+
+/* ===== Extra Utilities ===== */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ===== Keyframes ===== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
