@@ -17,12 +17,12 @@ connectDB();
 
 const app = express();
 
-// Middleware
+// Middleware - Allow CORS for all origins
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.vercel.app', 'https://your-custom-domain.com']
-    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: false
 }));
 
 app.use(express.json({ limit: '10mb' }));
